@@ -2,20 +2,28 @@
 
 
 
+<?php if ($watch_id = $this->input->get('getMovieProvider')) : ?>
+    <?php foreach ($providersMovie as $provider) : ?>
+        <ul>
+            <li>
+                <a href="<?php echo $provider['link'] ?>">Watch Online</a>
+            </li>
+        </ul>
+    <?php endforeach; ?>
+<?php endif; ?>
 
 
-<?php foreach ($results as $provider) : ?>
+<?php if ($watch_id = $this->input->get('getTvProvider')) : ?>
 
-    
-    <ul>
-        <li>
-        <a href="<?php echo $provider['link'] ?>">Watch Online</a>     
-        </li>
-    </ul>
+    <?php foreach ($providersTV as $provider) : ?>
+        <ul>
+            <li>
+                <a href="<?php echo $provider['link'] ?>">Watch Online</a>
+            </li>
+        </ul>
+    <?php endforeach; ?>
+<?php endif; ?>
 
-
-
-<?php endforeach; ?>
 
 
 

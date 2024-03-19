@@ -324,6 +324,22 @@ class TmDB
 
     $data = json_decode($response, true);
 
+    if (isset($data['results']) ) {
+      return $data['results'] ;
+    }
+    else {
+      return []; // Empty array if no results
+    }
+  }
+
+  public function watch_provider_tv($id)
+  {
+    $url =  "https://api.themoviedb.org/3/tv/ $id /watch/providers?api_key=ec22337157b689e5a4a97da6b1ac5523";
+    // Default language
+    $response = file_get_contents($url);
+
+    $data = json_decode($response, true);
+
     if (isset($data['results'])) {
       return $data['results'];
     }

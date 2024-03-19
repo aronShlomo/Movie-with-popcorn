@@ -12,10 +12,9 @@
 
 <style>
   .container {
-    display: flex;
     text-align: center;
+    justify-content: center;
   }
-
   body {
     background-color: black;
     color: white;
@@ -40,6 +39,14 @@
     font-size: 20px;
     font-style: italic;
   }
+
+  .tab-profile-name{
+    text-decoration: none;
+    color: red;
+    font-style: italic;
+
+  }
+  
 
   .tab-group {
     margin-top: 5px;
@@ -298,6 +305,7 @@
   }
   .card{
     margin: 10px;
+    
   }
 
   .title-movie{
@@ -313,6 +321,7 @@
 .movie-card{
   text-decoration: none;
   color: black;
+  padding: 5px;
 }
 .trailer_name{
   text-align: center;
@@ -338,10 +347,53 @@
   border: 50px;
   border-radius: 30px;
 }
+hr{
+  color: red;
+}
+
+.img_addtolist{
+  width: 360px;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  
+}
+.title_addtolist{
+  text-align: center;
+}
+.container_addtolist{
+  width: 360px; 
+  margin: 50px;
+  
+}
+
 
 </Style>
 
 
 
+
+<header>
+    <div class="container">
+        <div class="row">
+            <div class=" col-sm-1 title">
+                <h2> Movie & Popcorn</h2>
+            </div>
+            <div class="col-sm-9 tab-group ">
+                <a class="tab " href="index">Home</a>
+                <a class="tab " href="movies">Movies</a>
+                <a class="tab " href="tv">TV Show</a>
+                <a class="tab " href="mylist">My List</a>
+            </div>
+            <div class="img-container col-sm-1">
+                <span class="tab-profile-name">Name: </span>
+                <div class="col img-profile">
+                    <img class="image-profile" src="https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
 <body>

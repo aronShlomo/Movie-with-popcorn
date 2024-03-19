@@ -6,33 +6,6 @@ $image_url = 'https://image.tmdb.org/t/p/original/'; ?>
 
 
 
-<header>
-    <div class="container">
-        <div class="row">
-
-            <div class=" col-sm-1 title">
-                <h2> Movie & Popcorn</h2>
-            </div>
-
-            <div class="col-sm-9 tab-group ">
-                <a class="tab " href="index">Home</a>
-                <a class="tab " href="movies">Movies</a>
-                <a class="tab " href="tv">TV Show</a>
-                <a class="tab " href="#">My List</a>
-            </div>
-
-            <div class="img-container col-sm-1">
-                <span class="col">Name: </span>
-                <div class="col img-profile">
-                    <img class="image-profile" src="https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-
-
 <div class="search-home">
     <?php echo form_input([
         'class' => 'search', 'type' => 'text', 'name' => 'search',
@@ -56,7 +29,7 @@ $image_url = 'https://image.tmdb.org/t/p/original/'; ?>
                 <p class="name-overlay"><?php echo $movie_id['title'] ?></p>
                 <p class="rating-overlay"><?php echo $movie_id['vote_average'] ?></p>
                 <img class="rating-img" src="https://cdn0.iconfinder.com/data/icons/stars-pointed/250/Red_5-point_star-512.png" alt="">
-                <a class="watchOnline_btn" href="movieOnline?watchProviderID=<?php echo $movie_id['id'] ?>">Watch online</a>
+                <a class="watchOnline_btn" href="online?getMovieProvider=<?php echo $movie_id['id'] ?>">Watch online</a>
                 <a class="watchTrailer_btn" href="trailer?trailer_movie_id=<?php echo $movie_id['id'] ?>">Watch trailer</a>
                 <a class="addToList_btn" href="movieList">+ add to list</a>
             </div>
@@ -71,7 +44,7 @@ $image_url = 'https://image.tmdb.org/t/p/original/'; ?>
                 <p class="name-overlay"><?php echo $tvId['name'] ?></p>
                 <p class="rating-overlay"><?php echo $tvId['vote_average'] ?></p>
                 <img class="rating-img" src="https://cdn0.iconfinder.com/data/icons/stars-pointed/250/Red_5-point_star-512.png" alt="">
-                <a class="watchOnline_btn" href="movieOnline?watchProviderID=<?php echo $tvId['id'] ?>">Watch online</a>
+                <a class="watchOnline_btn" href="online?getTvProvider=<?php echo $tvId['id'] ?>">Watch online</a>
                 <a class="watchTrailer_btn" href="trailer?trailer_tv_id=<?php echo $tvId['id'] ?>">Watch trailer</a>
                 <a class="addToList_btn" href="movieList">+ add to list</a>
             </div>

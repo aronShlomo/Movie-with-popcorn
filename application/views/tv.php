@@ -7,6 +7,8 @@ $image_url = 'https://image.tmdb.org/t/p/original/';
 
 ?>
 
+<hr>
+<br>
 
 
 <div class="row-container">
