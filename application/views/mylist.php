@@ -7,29 +7,22 @@
 
 
 
-<?php if ($movie_id = $this->session->userdata('add_movie')) :  ?>
-    <div class="card container_addtolist row ">
-        <img name="poster_path" class="img_addtolist" src="<?php echo $image_url . $movie_id['poster_path'] ?>" alt="">
-        <p name="original_title" class="title_addtolist"><?php echo $movie_id['original_title'] ?></p>
-        <p name="overview" class="title_addtolist"><?php echo $movie_id['overview'] ?></p>
-    </div>
-<?php endif; ?>
-
-
-<?php if ($movie_id = $this->session->userdata('get_movie')) :  ?>
-    <div class="card container_addtolist row ">
-        <img name="poster_path" class="img_addtolist" src="<?php echo $image_url . $movie_id['poster_path'] ?>" alt="">
-        <p name="original_title" class="title_addtolist"><?php echo $movie_id['original_title'] ?></p>
-        <p name="overview" class="title_addtolist"><?php echo $movie_id['overview'] ?></p>
-    </div>
-<?php endif; ?>
-
-
-
-
-
-
-
+<div class="row-container">
+    <ul class="row ul-movies ">
+        <?php foreach ($results_list as $result) : ?>
+            <div class="card" style="width: 18rem;">
+            
+                <li>
+                    <img src="<?php echo $image_url . $result->poster_path  ?>" class="card-img-top image-movie" name="img">
+                    <p name="title" class="title-movie"><?php echo $result->original_title ?></p>
+                    <div class="card-body">
+                        <p name="overview" class="overview-movie"><?php echo $result->overview ?></p>
+                    </div>
+                </li>
+            </div>
+        <?php endforeach; ?>
+    </ul>
+</div>
 
 
 

@@ -28,10 +28,10 @@ $image_url = 'https://image.tmdb.org/t/p/original/';
             </div>
         <?php endforeach; ?>
     </ul>
-
-
-
 </div>
+
+
+
 
 
 

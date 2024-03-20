@@ -9,15 +9,17 @@ class movies extends CI_Model{
         $this->db->insert('add_to_list', $data , 1);
     }
 
+    public function movie_exist($title){
+          $this->db->where('original_title', $title);
+          $query = $this->db->get_where('add_to_list');
+          return $query->num_rows() > 0;
+           
+    }
 
-    public function get_movie($data){
-          $get_movie = $this->db->get('add_to_list', $data);
-          if($get_movie > 0){
-             return $get_movie;
-          } 
-          else{
-            return false;
-          }
+
+    public function get_movies(){
+          $query = $this->db->get('add_to_list');
+          return $query->result();
     }
 
 

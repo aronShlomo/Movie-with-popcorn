@@ -11,7 +11,6 @@ class home extends CI_Controller
         parent::__construct();
         $this->load->library('TMDB');
         $this->load->library('session');
-
     }
 
 
@@ -36,37 +35,36 @@ class home extends CI_Controller
 
 
 
-    public function mylist(){
+    public function mylist()
+    {
 
-           $movie = $this->input->get('addmovietolist');
-           $add_movie_to_list = $this->tmdb->get_movie($movie, 'get_movie');
-           $movie_list = $this->session->set_userdata('add_movie', $add_movie_to_list);
-           $this->load->view('mylist', $movie_list);
-           
-           if($movie_id = $this->input->get('addmovietolist')){
+        // $movie = $this->input->get('addmovietolist');
+        // $add_movie_to_list = $this->tmdb->get_movie($movie, 'get_movie');
+        // $movie_list = $this->session->set_userdata('add_movie', $add_movie_to_list);
+        // $this->load->view('mylist', $movie_list);
+
+
+        if ($movie_id = $this->input->get('addmovietolist')) {
             $add_movie = $this->tmdb->get_movie($movie_id, 'get_movie');
             $data = array(
-                 'poster_path' => $add_movie['poster_path'],
-                 'original_title' => $add_movie['original_title'],
-                 'overview' => $add_movie['overview'],
+                'poster_path' => $add_movie['poster_path'],
+                'original_title' => $add_movie['original_title'],
+                'overview' => $add_movie['overview'],
             );
             $this->load->model('movies');
-            if($this->movies->insert_movie($data)){
-
-                  $movie = $this->movies->get_movie($data);
-                  $this->session->set_userdata('get_movie', $movie);
-
-
+            if (!$this->movies->movie_exist($data['original_title'])) {
+                $data = $this->movies->insert_movie($data);
             }
-            
+        }
 
-
-
-           }
-        
-    
-
+        $this->load->model('movies');
+        $movie['results_list'] = $this->movies->get_Movies();
+        $this->load->view('mylist', $movie);
     }
+
+
+
+
 
 
     public function movies()
@@ -89,19 +87,17 @@ class home extends CI_Controller
             $tv = $this->session->set_userdata('trailer_tv', $get_trailer);
             $this->load->view('trailer');
             $this->session->unset_userdata('movieId');
-
         }
     }
 
 
     public function online()
     {
-        if($watch_id = $this->input->get('getMovieProvider')){
-            $watch_provider['providersMovie']= $this->tmdb->watch_provider_movie($watch_id);
+        if ($watch_id = $this->input->get('getMovieProvider')) {
+            $watch_provider['providersMovie'] = $this->tmdb->watch_provider_movie($watch_id);
             $this->load->view('provider', $watch_provider);
-        }
-        elseif($watch_id = $this->input->get('getTvProvider')){
-            $watch_provider['providersTV']= $this->tmdb->watch_provider_tv($watch_id);
+        } elseif ($watch_id = $this->input->get('getTvProvider')) {
+            $watch_provider['providersTV'] = $this->tmdb->watch_provider_tv($watch_id);
             $this->load->view('provider', $watch_provider);
         }
     }
