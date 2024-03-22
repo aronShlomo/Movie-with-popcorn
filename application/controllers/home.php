@@ -11,6 +11,8 @@ class home extends CI_Controller
         parent::__construct();
         $this->load->library('TMDB');
         $this->load->library('session');
+        $this->load->library('form_validation');
+        $this->load->helper('url');
     }
 
 
@@ -37,12 +39,7 @@ class home extends CI_Controller
 
     public function mylist()
     {
-
-        // $movie = $this->input->get('addmovietolist');
-        // $add_movie_to_list = $this->tmdb->get_movie($movie, 'get_movie');
-        // $movie_list = $this->session->set_userdata('add_movie', $add_movie_to_list);
-        // $this->load->view('mylist', $movie_list);
-
+   
 
         if ($movie_id = $this->input->get('addmovietolist')) {
             $add_movie = $this->tmdb->get_movie($movie_id, 'get_movie');
@@ -53,14 +50,43 @@ class home extends CI_Controller
             );
             $this->load->model('movies');
             if (!$this->movies->movie_exist($data['original_title'])) {
-                $data = $this->movies->insert_movie($data);
+                $this->movies->insert($data);
+            } else {
+                $movie_id = $this->input->get('addmovietolist');
+                $this->session->set_userdata('movieId_exist', $movie_id);
+                header('Location: movies');
+                exit;
+            }
+        } 
+        
+        if ($tv_id = $this->input->get('addtvtolist')) {
+            $add_tv = $this->tmdb->get_tv($tv_id, 'get_tv');
+            $data = array(
+                'poster_path' => $add_tv['poster_path'],
+                'name' => $add_tv['name'],
+                'overview' => $add_tv['overview'],
+            );
+            $this->load->model('movies');
+            if (!$this->movies->tv_exist($data['name'])) {
+                $this->movies->insert($data);
+            } else {
+                $movie_id = $this->input->get('addmovietolist');
+                $this->session->set_userdata('movieId_exist', $movie_id);
+                header('Location: tv');
+                exit;
             }
         }
-
         $this->load->model('movies');
-        $movie['results_list'] = $this->movies->get_Movies();
-        $this->load->view('mylist', $movie);
+        $movieTV['results_list'] = $this->movies->get();
+        $this->load->view('mylist', $movieTV);
+
+     
+
+
+
     }
+
+
 
 
 

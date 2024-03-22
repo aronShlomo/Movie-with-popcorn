@@ -7,40 +7,47 @@ $youtube_url = 'https://www.youtube.com/embed/';
 ?>
 
 
-<?php if ($this->session->userdata('movieId')) : ?>
-    <?php foreach ($trailer as $movie) : ?>
-        <ul>
-            <li class="row ul-movies ">
-                <div class="card-trailer" style="width: 50rem; height: 35rem;">
-                    <p class="trailer_name"><?php echo $movie['name'] ?></p>
-                    <iframe width="770" height="450" src="<?php echo $youtube_url
-                                                                . $movie['key'] ?>" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </li>
-        </ul>
-    <?php endforeach; ?>
-<?php endif; ?>
+<hr>
+<br>
 
 
-<?php if ($this->session->userdata('tvId')) : ?>
+<h2 class="title-trailer">Trailer</h2>
 
-    <?php if ($trailer = $this->session->userdata('trailer_tv')) : ?>
 
-        <?php foreach ($trailer as $tr) : ?>
-
-            <div class="trailer_container" >
-                <h4><?php echo $tr['name'] ?></h4>
-                <iframe class="trailer_video"  width="770" height="450" src="<?php echo $youtube_url
-                . $tr['key'] ?>" frameborder="0" allowfullscreen></iframe>
+<ul class="ul-movies ">
+    <?php if ($this->session->userdata('movieId')) : ?>
+        <?php foreach ($trailer as $movie) : ?>
+            <div class="">
+                <li class="ul-movies row">
+                    <iframe class="trailer" src="<?php echo $youtube_url . $movie['key'] ?>
+                                    " frameborder="0" allowfullscreen></iframe>
+                </li>
             </div>
-
-
         <?php endforeach; ?>
+    <?php endif; ?>
+</ul>
+
+
+
+
+<ul class="ul-movies ">
+    <?php if ($this->session->userdata('tvId')) : ?>
+        <?php if ($trailer = $this->session->userdata('trailer_tv')) : ?>
+
+            <?php foreach ($trailer as $tr) : ?>
+                <div class="">
+                    <li class="ul-movies row">
+                        <iframe class="trailer" src="<?php echo $youtube_url . $tr['key'] ?>
+                                    " frameborder="0" allowfullscreen></iframe>
+                    </li>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
 
     <?php endif; ?>
+</ul>
 
 
-<?php endif; ?>
 
 
 

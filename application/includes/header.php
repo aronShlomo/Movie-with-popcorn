@@ -323,30 +323,17 @@
   color: black;
   padding: 5px;
 }
+
+.ul-movies {
+  display: flex;
+  align-items: center;
+}
+
+
 .trailer_name{
   text-align: center;
-  font-weight: bold;
-  font-size: 20px;
-  margin: 10px;
-  font-style: italic;
 }
 
-.trailer_container{
-  text-align: center;
-  justify-content: center;
-  margin: 20px;
-  
-}
-
-.trailer_container h4{
-  padding: 10px;
-  margin: 5px;
-  margin-bottom: 30px;
-}
-.trailer_video{
-  border: 50px;
-  border-radius: 30px;
-}
 hr{
   color: red;
 }
@@ -367,7 +354,37 @@ hr{
   margin: 50px;
   
 }
+.title-mylist{
+  text-align: center;
+  margin-bottom: 40px;
+}
+.title-movies{
+  text-align: center;
+  margin-bottom: 40px;
+}
+.title-tv{
+  text-align: center;
+  margin-bottom: 40px;
+}
 
+.title-trailer{
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.select_mylist{
+  width: 130px;
+  height: 40px;
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 10px;
+
+}
+.header-mylist{
+  justify-content: center;
+}
 
 </Style>
 
