@@ -39,8 +39,6 @@ class home extends CI_Controller
 
     public function mylist()
     {
-   
-
         if ($movie_id = $this->input->get('addmovietolist')) {
             $add_movie = $this->tmdb->get_movie($movie_id, 'get_movie');
             $data = array(
@@ -58,6 +56,8 @@ class home extends CI_Controller
                 exit;
             }
         } 
+
+
         
         if ($tv_id = $this->input->get('addtvtolist')) {
             $add_tv = $this->tmdb->get_tv($tv_id, 'get_tv');
@@ -79,11 +79,6 @@ class home extends CI_Controller
         $this->load->model('movies');
         $movieTV['results_list'] = $this->movies->get();
         $this->load->view('mylist', $movieTV);
-
-     
-
-
-
     }
 
 
@@ -140,4 +135,17 @@ class home extends CI_Controller
             $this->load->view('tv', $tv);
         }
     }
+
+
+    public function delete(){
+        $delete = $this->input->get('delete_card');
+        $this->load->model('movies');
+        $this->movies->delete($delete);
+        // return redirect('home/mylist');
+        $this->session->set_flashdata('deleted_card', $delete);
+        header('Location: mylist');
+
+    }
+
+    
 }

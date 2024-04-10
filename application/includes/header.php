@@ -386,6 +386,11 @@ hr{
   justify-content: center;
 }
 
+.mylist_header{
+  text-align: center;
+  color: red;
+  margin-top: 220px;
+}
 </Style>
 
 

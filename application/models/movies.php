@@ -31,5 +31,10 @@ class movies extends CI_Model
         return $query->result();
     }
 
+    public function delete($movie_id){
+          $this->db->where('movie_id', $movie_id);
+          $this->db->delete('add_to_list');
+    }
+
   
 }

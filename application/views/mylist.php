@@ -8,6 +8,10 @@
     <div class="header-mylist row">
         <h2 class="title-mylist">My list</h2>
 
+        <?php if ($this->session->flashdata('deleted_card')) : ?>
+            <h3 class="mylist_header" >My list Empty</h3>
+        <?php endif; ?>
+
 
 
 <ul class="row ul-movies ">
@@ -20,6 +24,7 @@
                     <p name="overview" class="overview-movie"><?php echo $result->overview ?></p>
                 </div>
             </li>
+            <a href="delete?delete_card=<?php echo $result->movie_id ?>" class="tab">Delete</a>
         </div>
     <?php endforeach; ?>
 </ul>
