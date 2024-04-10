@@ -421,8 +421,8 @@ class TmDB
    */
 
 
-   public function get_all_tv($page){
-    $url = "https://api.themoviedb.org/3/tv/popular?api_key=ec22337157b689e5a4a97da6b1ac5523&page=$page";
+   public function get_all_tv(){
+    $url = "https://api.themoviedb.org/3/tv/popular?api_key=ec22337157b689e5a4a97da6b1ac5523";
 
     $response = file_get_contents($url);
 
@@ -584,14 +584,10 @@ class TmDB
    * @param string $year
    * @return array
    */
-  public function search_movie($query, $page = 1, $adult = false, $year = null)
+  public function search_movie($query)
   {
     $params = array(
       'query' => $query,
-      'page' => (int) $page,
-      'include_adult' => (bool) $adult,
-      'year' => $year,
-      'language' => $this->default_language
     );
 
     return $this->make_call('search/movie', $params);
@@ -605,12 +601,11 @@ class TmDB
    * @param string $adult
    * @param string $year
    */
-  public function search_tv($query, $page = 1, $adult = false, $year = null)
+  public function search_tv($query)
   {
     $params = array(
       'query' => $query,
-      'page' => (int) $page,
-      'language' => $this->default_language,
+      
     );
 
     return $this->make_call('search/tv', $params);

@@ -35,8 +35,6 @@ class home extends CI_Controller
         }
     }
 
-
-
     public function mylist()
     {
         if ($movie_id = $this->input->get('addmovietolist')) {
@@ -55,10 +53,44 @@ class home extends CI_Controller
                 header('Location: movies');
                 exit;
             }
-        } 
+        }
 
+        if ($movie_id = $this->input->get('addHomeMovieToList')) {
+            $add_movie = $this->tmdb->get_movie($movie_id, 'get_movie');
+            $data = array(
+                'poster_path' => $add_movie['poster_path'],
+                'original_title' => $add_movie['original_title'],
+                'overview' => $add_movie['overview'],
+            );
+            $this->load->model('movies');
+            if (!$this->movies->movie_exist($data['original_title'])) {
+                $this->movies->insert($data);
+            } else {
+                $movie_id = $this->input->get('addHomeMovieToList');
+                $this->session->set_userdata('movieId_exist', $movie_id);
+                header('Location: home');
+                exit;
+            }
+        }
 
-        
+        if ($tv_id = $this->input->get('addHomeTVToList')) {
+            $add_tv = $this->tmdb->get_tv($tv_id, 'get_tv');
+            $data = array(
+                'poster_path' => $add_tv['poster_path'],
+                'name' => $add_tv['name'],
+                'overview' => $add_tv['overview'],
+            );
+            $this->load->model('movies');
+            if (!$this->movies->tv_exist($data['name'])) {
+                $this->movies->insert($data);
+            } else {
+                $tv_id = $this->input->get('addHomeTVToList');
+                $this->session->set_userdata('movieId_exist', $tv_id);
+                header('Location: home');
+                exit;
+            }
+        }
+
         if ($tv_id = $this->input->get('addtvtolist')) {
             $add_tv = $this->tmdb->get_tv($tv_id, 'get_tv');
             $data = array(
@@ -85,13 +117,16 @@ class home extends CI_Controller
 
 
 
-
-
-
     public function movies()
     {
-        $data['results'] = $this->tmdb->get_all_movies();
-        $this->load->view('movies',  $data);
+
+        if ($search = $this->input->get('search')) {
+            $query['results'] = $this->tmdb->search_movie($search);
+            $this->load->view('movies', $query);
+        } else {
+            $data['results'] = $this->tmdb->get_all_movies();
+            $this->load->view('movies',  $data);
+        }
     }
 
 
@@ -130,22 +165,25 @@ class home extends CI_Controller
 
     public function tv()
     {
-        for ($i = 1; $i < 5; $i++) {
-            $tv['result_tv'] = $this->tmdb->get_all_tv($i);
+
+        if ($search = $this->input->get('search')) {
+            $query['results'] = $this->tmdb->search_tv($search);
+            $this->load->view('tv', $query);
+        } else {
+
+            $tv['result_tv'] = $this->tmdb->get_all_tv();
             $this->load->view('tv', $tv);
         }
     }
 
 
-    public function delete(){
+    public function delete()
+    {
         $delete = $this->input->get('delete_card');
         $this->load->model('movies');
         $this->movies->delete($delete);
         // return redirect('home/mylist');
         $this->session->set_flashdata('deleted_card', $delete);
         header('Location: mylist');
-
     }
-
-    
 }

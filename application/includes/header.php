@@ -40,6 +40,21 @@
     font-style: italic;
   }
 
+  
+  .tab_header {
+    text-decoration: none;
+    color: red;
+    text-align: center;
+    margin: 30px;
+    font-size: 20px;
+    font-style: italic;
+  }
+  .tab_header:hover{
+    color: blue;
+  }
+
+  
+
   .tab-profile-name{
     text-decoration: none;
     color: red;
@@ -50,6 +65,7 @@
 
   .tab-group {
     margin-top: 5px;
+
   }
 
   header {
@@ -221,12 +237,16 @@
  
   
   .search-icon{
+    border-radius: none;
     position: absolute;
     top: 19%;
+    border: none;
+    background-color: red;
+    font-weight: bold;
+    color: #fff;
     left: 45%;
     transform: translate(-50%, -50%);
-    width: 30px;
-    margin-left: 200px;
+    margin-left: 170px;
     
   }
  
@@ -403,10 +423,10 @@ hr{
                 <h2> Movie & Popcorn</h2>
             </div>
             <div class="col-sm-9 tab-group ">
-                <a class="tab " href="index">Home</a>
-                <a class="tab " href="movies">Movies</a>
-                <a class="tab " href="tv">TV Show</a>
-                <a class="tab " href="mylist">My List</a>
+                <a class="tab_header " href="index">Home</a>
+                <a class="tab_header " href="movies">Movies</a>
+                <a class="tab_header " href="tv">TV Show</a>
+                <a class="tab_header " href="mylist">My List</a>
             </div>
             <div class="img-container col-sm-1">
                 <span class="tab-profile-name">Name: </span>

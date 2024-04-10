@@ -6,13 +6,6 @@
 <?php $image_url = 'https://image.tmdb.org/t/p/original/'; ?>
 
     <div class="header-mylist row">
-        <h2 class="title-mylist">My list</h2>
-
-        <?php if ($this->session->flashdata('deleted_card')) : ?>
-            <h3 class="mylist_header" >My list Empty</h3>
-        <?php endif; ?>
-
-
 
 <ul class="row ul-movies ">
     <?php foreach ($results_list as $result) : ?>

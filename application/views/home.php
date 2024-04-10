@@ -6,15 +6,11 @@ $image_url = 'https://image.tmdb.org/t/p/original/'; ?>
 
 
 
-<div class="search-home">
-    <?php echo form_input([
-        'class' => 'search', 'type' => 'text', 'name' => 'search',
-        'placeholder' => 'Search',
-        'id' => 'search',
-    ]); ?>
-    <img class="search-icon" src="https://www.clker.com/cliparts/R/6/l/K/8/R/search-icon-red-hi.png" alt="">
+<form action="movies" method="get">
+    <input type="text" name="search" class="search">
+    <input type="submit" class="search-icon" value="Search">
+</form>
 
-</div>
 
 
 
@@ -31,7 +27,7 @@ $image_url = 'https://image.tmdb.org/t/p/original/'; ?>
                 <img class="rating-img" src="https://cdn0.iconfinder.com/data/icons/stars-pointed/250/Red_5-point_star-512.png" alt="">
                 <a class="watchOnline_btn" href="online?getMovieProvider=<?php echo $movie_id['id'] ?>">Watch online</a>
                 <a class="watchTrailer_btn" href="trailer?trailer_movie_id=<?php echo $movie_id['id'] ?>">Watch trailer</a>
-                <a class="addToList_btn" href="movieList">+ add to list</a>
+                <a class="addToList_btn" href="mylist?addHomeMovieToList=<?php echo $movie_id['id'] ?>">+ add to list</a>
             </div>
         </div>
     <?php endif; ?>
@@ -46,7 +42,7 @@ $image_url = 'https://image.tmdb.org/t/p/original/'; ?>
                 <img class="rating-img" src="https://cdn0.iconfinder.com/data/icons/stars-pointed/250/Red_5-point_star-512.png" alt="">
                 <a class="watchOnline_btn" href="online?getTvProvider=<?php echo $tvId['id'] ?>">Watch online</a>
                 <a class="watchTrailer_btn" href="trailer?trailer_tv_id=<?php echo $tvId['id'] ?>">Watch trailer</a>
-                <a class="addToList_btn" href="movieList">+ add to list</a>
+                <a class="addToList_btn" href="mylist?addHomeTVToList=<?php echo $tvId['id'] ?>">+ add to list</a>
             </div>
         </div>
     <?php endif; ?>
