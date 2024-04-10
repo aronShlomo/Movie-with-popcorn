@@ -19,7 +19,7 @@ $image_url = 'https://image.tmdb.org/t/p/original/';
 
 <!-- SEARCH -->
 <form action="movies" method="get">
-    <input type="text" name="search" class="search">
+    <input type="text" name="search" placeholder="Find Movies" class="search">
     <input type="submit" class="search-icon" value="Search">
 </form>
 

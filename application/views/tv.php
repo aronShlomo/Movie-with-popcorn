@@ -12,7 +12,7 @@ $image_url = 'https://image.tmdb.org/t/p/original/';
 
 
 <form action="tv" method="get">
-    <input type="text" name="search" class="search">
+    <input type="text" name="search" placeholder="Find TV" class="search">
     <input type="submit" class="search-icon" value="Search">
 </form>
 

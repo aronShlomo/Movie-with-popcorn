@@ -50,7 +50,7 @@
     font-style: italic;
   }
   .tab_header:hover{
-    color: blue;
+    color: white;
   }
 
   
@@ -259,10 +259,11 @@
     border-radius: 30px;
     padding: 20px;
     height: 45px;
-    font-size: 25px;
+    font-size: 15;
     font-weight: bold;
     position: absolute;
     top: 19%;
+    font-style: italic;
     left: 45%;
     transform: translate(-50%, -50%);
     color :#fff
