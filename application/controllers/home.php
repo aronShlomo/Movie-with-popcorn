@@ -13,6 +13,7 @@ class home extends CI_Controller
         $this->load->library('session');
         $this->load->library('form_validation');
         $this->load->helper('url');
+        $this->load->helper('html');
     }
 
 
@@ -34,6 +35,92 @@ class home extends CI_Controller
             $this->load->view('home');
         }
     }
+
+    public function login()
+    {
+        $this->load->view('login');
+    }
+
+    public function signup()
+    {
+        $this->load->view('signup');
+    }
+
+
+    public function user()
+    {
+        $this->form_validation->set_rules('lastname', 'Last Name', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('error', 'All fields are required');
+            header('Location: login');
+            exit();
+        }
+        $data['lastname'] = $this->input->post('lastname');
+        $this->load->model('user');
+        if (!$this->user->isUserExist($data)) {
+            $this->session->set_flashdata('error', 'User does not exist');
+            header('Location: login');
+            exit();
+        }
+        $dataPass['password'] = $this->input->post('password');
+        $this->load->model('user');
+        if (!$this->user->isPasswordMatch($dataPass)) {
+            $this->session->set_flashdata('error', 'Password does not match what in the system!! Please try again!!!');
+            header('Location: login');
+
+        }
+        $this->user->getUser($data);
+        $this->session->set_userdata('user',  $data);
+        header('Location: index');
+    }
+
+
+    public function register()
+    {
+        $this->form_validation->set_rules('lastname', 'Last Name', 'trim|required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('confirm_password', 'Password',  'required|matches[password]');
+        $password = $this->input->post('password');
+        $confirm_password = $this->input->post('confirm_password');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('error', 'Feilds cannot be empty');
+            header('Location: signup');
+            if ($password != $confirm_password) {
+                $this->session->set_flashdata('error', 'Passwords do not match');
+                header('Location: signup');
+                exit();
+            }
+            exit();
+        }
+
+        $data['lastname'] = $this->input->post('lastname');
+        $this->load->model('user');
+        if ($this->user->isUserExist($data)) {
+            $this->session->set_flashdata('error', 'User already exists');
+            header('Location: signup');
+            exit();
+        }
+        $data = $this->input->post();
+        $this->load->model('user');
+        $this->user->insert($data);
+        $this->session->set_userdata('user', $data);
+        header('Location: index');
+    }
+
+
+
+
+    public function logout()
+    {
+        $this->session->unset_userdata('user');
+        header('Location: index');
+    }
+
+
+
 
     public function mylist()
     {

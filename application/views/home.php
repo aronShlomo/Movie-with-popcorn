@@ -1,7 +1,10 @@
 <?php require_once(APPPATH . 'includes/header.php');
 
 
+
+
 $image_url = 'https://image.tmdb.org/t/p/original/'; ?>
+
 
 
 
