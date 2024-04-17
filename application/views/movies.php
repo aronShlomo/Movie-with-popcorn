@@ -67,6 +67,7 @@ $image_url = 'https://image.tmdb.org/t/p/original/';
                         <p class="tab">Movie Already exist in mylist</p>
                     <?php else : ?>
                         <a href="mylist?addmovietolist=<?php echo $movie['id'] ?> " class="tab">Add to MyList</a>
+                        <!-- <a href="mylist?favorite=</?php echo $movie['id'] ?> " class="tab">Add to MyList</a> -->
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>

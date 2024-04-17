@@ -40,6 +40,7 @@
     font-size: 20px;
     font-style: italic;
   }
+  
 
 
   .tab_header {
@@ -524,6 +525,15 @@
     margin-left: 10px;
     padding: 0px;
   }
+  .pupup_login{
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+    font-style: italic;
+    font-family: bolder;
+    margin-left: 50px;
+
+}
 </Style>
 
 
@@ -552,6 +562,7 @@
           <a class="login"><?php echo 'Hello: ' . $user['lastname'] ?></a>
         <?php else : ?>
           <a class="login" href="login">Log In</a>
+
         <?php endif; ?>
 
 

@@ -14,7 +14,15 @@ class home extends CI_Controller
         $this->load->library('form_validation');
         $this->load->helper('url');
         $this->load->helper('html');
+
+
     }
+
+    public function closepopup(){
+        $this->session->set_userdata('guest', '');
+    }
+
+  
 
 
     public function index()
@@ -34,6 +42,9 @@ class home extends CI_Controller
             $this->session->unset_userdata('tvId');
             $this->load->view('home');
         }
+
+
+        
     }
 
     public function login()
@@ -64,13 +75,13 @@ class home extends CI_Controller
             header('Location: login');
             exit();
         }
-        $dataPass['password'] = $this->input->post('password');
-        $this->load->model('user');
-        if (!$this->user->isPasswordMatch($dataPass)) {
-            $this->session->set_flashdata('error', 'Password does not match what in the system!! Please try again!!!');
-            header('Location: login');
-
-        }
+        // $dataPass['password'] = $this->input->post('password');
+        // $this->load->model('user');
+        // if (!$this->user->isPasswordMatch($dataPass)) {
+        //     $this->session->set_flashdata('error', 'Password does not match what in the system!! Please try again!!!');
+        //     header('Location: login');
+        //     exit();
+        // }
         $this->user->getUser($data);
         $this->session->set_userdata('user',  $data);
         header('Location: index');
@@ -106,6 +117,7 @@ class home extends CI_Controller
         $data = $this->input->post();
         $this->load->model('user');
         $this->user->insert($data);
+
         $this->session->set_userdata('user', $data);
         header('Location: index');
     }
@@ -142,42 +154,6 @@ class home extends CI_Controller
             }
         }
 
-        if ($movie_id = $this->input->get('addHomeMovieToList')) {
-            $add_movie = $this->tmdb->get_movie($movie_id, 'get_movie');
-            $data = array(
-                'poster_path' => $add_movie['poster_path'],
-                'original_title' => $add_movie['original_title'],
-                'overview' => $add_movie['overview'],
-            );
-            $this->load->model('movies');
-            if (!$this->movies->movie_exist($data['original_title'])) {
-                $this->movies->insert($data);
-            } else {
-                $movie_id = $this->input->get('addHomeMovieToList');
-                $this->session->set_userdata('movieId_exist', $movie_id);
-                header('Location: home');
-                exit;
-            }
-        }
-
-        if ($tv_id = $this->input->get('addHomeTVToList')) {
-            $add_tv = $this->tmdb->get_tv($tv_id, 'get_tv');
-            $data = array(
-                'poster_path' => $add_tv['poster_path'],
-                'name' => $add_tv['name'],
-                'overview' => $add_tv['overview'],
-            );
-            $this->load->model('movies');
-            if (!$this->movies->tv_exist($data['name'])) {
-                $this->movies->insert($data);
-            } else {
-                $tv_id = $this->input->get('addHomeTVToList');
-                $this->session->set_userdata('movieId_exist', $tv_id);
-                header('Location: home');
-                exit;
-            }
-        }
-
         if ($tv_id = $this->input->get('addtvtolist')) {
             $add_tv = $this->tmdb->get_tv($tv_id, 'get_tv');
             $data = array(
@@ -195,11 +171,53 @@ class home extends CI_Controller
                 exit;
             }
         }
+
+
+        if ($movie_id = $this->input->get('addHomeMovieToList')) {
+            $add_movie = $this->tmdb->get_movie($movie_id, 'get_movie');
+            $data = array(
+                'poster_path' => $add_movie['poster_path'],
+                'original_title' => $add_movie['original_title'],
+                'overview' => $add_movie['overview'],
+            );
+            $this->load->model('movies');
+            if (!$this->movies->movie_exist($data['original_title'])) {
+                $this->movies->insert($data);
+            } else {
+                $movie_id = $this->input->get('addHomeMovieToList');
+                $this->session->set_userdata('homemovieId_exist', $movie_id);
+                header('Location: index');
+                exit;
+            }
+        }
+
+        if ($tv_id = $this->input->get('addHomeTVToList')) {
+            $add_tv = $this->tmdb->get_tv($tv_id, 'get_tv');
+            $data = array(
+                'poster_path' => $add_tv['poster_path'],
+                'name' => $add_tv['name'],
+                'overview' => $add_tv['overview'],
+            );
+            $this->load->model('movies');
+            if (!$this->movies->tv_exist($data['name'])) {
+                $this->movies->insert($data);
+            } else {
+                $tv_id = $this->input->get('addHomeTVToList');
+                $this->session->set_userdata('hometvId_exist', $tv_id);
+                header('Location: index');
+                exit;
+            }
+        }
+
         $this->load->model('movies');
         $movieTV['results_list'] = $this->movies->get();
         $this->load->view('mylist', $movieTV);
     }
 
+
+
+
+ 
 
 
 
