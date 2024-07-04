@@ -9,7 +9,7 @@ class home extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->library('TMDB');
+        $this->load->library('TMDB');  
         $this->load->library('session');
         $this->load->library('form_validation');
         $this->load->helper('url');
@@ -21,8 +21,6 @@ class home extends CI_Controller
     public function closepopup(){
         $this->session->set_userdata('guest', '');
     }
-
-  
 
 
     public function index()
@@ -60,13 +58,14 @@ class home extends CI_Controller
 
     public function user()
     {
+        
         $this->form_validation->set_rules('lastname', 'Last Name', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('error', 'All fields are required');
-            header('Location: login');
-            exit();
+            header('Location: login'); 
+            exit(); 
         }
         $data['lastname'] = $this->input->post('lastname');
         $this->load->model('user');

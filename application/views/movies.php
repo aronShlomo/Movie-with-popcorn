@@ -31,7 +31,7 @@ $image_url = 'https://image.tmdb.org/t/p/original/';
     <ul class="row ul-movies ">
 
         <?php if ($this->input->get('search')) : ?>
-            <?php foreach($results['results'] as $movie) : ?>
+            <?php foreach ($results['results'] as $movie) : ?>
                 <div class="card" style="width: 18rem;">
                     <a class="movie-card" href="index?movieId=<?php echo $movie['id']  ?>">
                         <li>
@@ -42,12 +42,12 @@ $image_url = 'https://image.tmdb.org/t/p/original/';
                             </div>
                         </li>
                     </a>
-            </div>
+                </div>
 
-                <?php endforeach; ?>
-           
+            <?php endforeach; ?>
 
-            
+
+
 
 
         <?php else : ?>
@@ -63,12 +63,29 @@ $image_url = 'https://image.tmdb.org/t/p/original/';
                             </div>
                         </li>
                     </a>
-                    <?php if ($this->session->userdata('movieId_exist') == $movie['id']) : ?>
-                        <p class="tab">Movie Already exist in mylist</p>
-                    <?php else : ?>
-                        <a href="mylist?addmovietolist=<?php echo $movie['id'] ?> " class="tab">Add to MyList</a>
-                        <!-- <a href="mylist?favorite=</?php echo $movie['id'] ?> " class="tab">Add to MyList</a> -->
-                    <?php endif; ?>
+
+
+
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Select</button>
+                        <ul class="dropdown-menu">
+                            <?php if ($this->session->userdata('movieId_exist') == $movie['id']) : ?>
+                                <p class="tab_exist" id="already_exist_text">Movie Already exist in mylist</p>
+                                
+                            <?php else : ?>
+
+                                <a href="mylist?addmovietolist=<?php echo $movie['id'] ?> " class="dropdown-item">Add to MyList</a>
+                            <?php endif; ?>
+
+                            <a href="mylist?addmovietolist=<?php echo $movie['id'] ?> " class="dropdown-item">Purchased</a>
+                            <a href="mylist?addmovietolist=<?php echo $movie['id'] ?> " class="dropdown-item">Favorite</a>
+                        </ul>
+                    </div>
+
+                    <!-- <a href="mylist?favorite=</?php echo $movie['id'] ?> " class="tab">Add to MyList</a> -->
+
+
+
                 </div>
             <?php endforeach; ?>
 

@@ -3,14 +3,59 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Movie-with-popcorn</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </head>
 
 
 <style>
+  .dropdown-toggle{
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+    align-items: center;  
+    font-size: 18px;
+    font-style: italic;
+    width: 100%;
+    font-weight: bold;
+    margin: 20px;
+    margin-left:1px;
+  }
+  .dropdown-toggle:hover{
+     background-color: white;
+     color: red;
+  }
+  .dropdown-item{
+    text-align: center;
+    font-style: italic;
+    padding: 5px;
+    color: white;
+    background-color: red;
+    border-radius: 10px;
+    width: 150px;
+    margin: 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    font-weight: bold;
+
+
+  }
+  .dropdown-item:hover{
+    background-color: white;
+    color: red;
+  }
+  .dropdown-menu{
+     height: 240px;
+     width: 210px;
+     background-color: white;
+     border-radius: 40px;
+
+  }
+ 
   .container {
     /* text-align: center;
     justify-content: center; */
@@ -37,6 +82,15 @@
     color: red;
     text-align: center;
     margin: 30px;
+    font-size: 20px;
+    font-style: italic;
+    
+  }
+  .tab_exist{
+    text-decoration: none;
+    color: red;
+    padding: 5px;
+    text-align: center;
     font-size: 20px;
     font-style: italic;
   }
