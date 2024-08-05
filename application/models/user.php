@@ -5,16 +5,30 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 
-class user extends CI_Model{
+class user extends CI_Model
+{
 
 
 
-    public function isUserExist($data){
-        $result = $this->db->get_where('user', $data);
-        if($result->num_rows() > 0){
-               return true;
+
+    public function isPasswordMatch($password)
+    {
+        $result = $this->db->get_where("user", $password);
+        if ($result->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
         }
-        else{
+    }
+
+
+
+    public function isUserExist($data)
+    {
+        $result = $this->db->get_where('user', $data);
+        if ($result->num_rows() > 0) {
+            return true;
+        } else {
             return false;
         }
     }
@@ -32,35 +46,20 @@ class user extends CI_Model{
     //     }
     // }
 
-    public function getUser($data){    
-         $user = $this->db->get_where('user', $data);
-          if($user->num_rows() > 0){
-               return true;
-          }else{
+    public function getUser($data)
+    {
+        $user = $this->db->get_where('user', $data);
+        if ($user->num_rows() > 0) {
+            return true;
+        } else {
             return false;
-          }
-
-
+        }
     }
 
 
 
-    public function getUserAccount(){
-          
+    public function insert($data)
+    {
+        return $this->db->insert('user', $data);
     }
-
-
-    public function insert($data){
-         return $this->db->insert('user', $data);
-    }
-
-
-
-
-
-
-
-
-
 }
-

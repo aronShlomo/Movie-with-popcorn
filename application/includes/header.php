@@ -3,59 +3,119 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Movie-with-popcorn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title class="title">Movie-with-popcorn</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 
 
 <style>
-  .dropdown-toggle{
+  .mylist_btn_container {
+    width: 140px;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    margin-right: 50%;
+  }
+
+
+
+  .mycontent-btn {
+    background-color: black;
+  }
+
+  .dropdown-movies {
+    position: absolute;
+    top: 20px;
+    font-style: italic;
+    left: 48px;
+    padding: 2px;
+
+    transform: translate(-50%, -50%);
+  }
+
+  .mylist_btn_container {
+    position: absolute;
+    top: 25%;
+    font-style: italic;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .dropdown-toggle {
     border: none;
     background-color: red;
     color: white;
+    padding: 1px;
     border-radius: 10px;
-    padding: 5px;
-    align-items: center;  
-    font-size: 18px;
-    font-style: italic;
-    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-right: 50%;
+    width: 80px;
+    font-style: normal;
     font-weight: bold;
-    margin: 20px;
-    margin-left:1px;
   }
-  .dropdown-toggle:hover{
-     background-color: white;
-     color: red;
-  }
-  .dropdown-item{
-    text-align: center;
-    font-style: italic;
-    padding: 5px;
+
+  /* .dropdown-toggle:hover{
+     background-color: red;
+     color: white;
+  } */
+  .dropdown-item {
     color: white;
-    background-color: red;
-    border-radius: 10px;
-    width: 150px;
-    margin: 30px;
     font-size: 18px;
-    border-radius: 10px;
-    font-weight: bold;
-
-
+    text-align: center;
+    margin-bottom: 15px;
   }
-  .dropdown-item:hover{
-    background-color: white;
+
+  .mylist_empty {
+    position: absolute;
+    top: 70%;
+    font-style: italic;
+    left: 50%;
+    font-size: 30px;
     color: red;
+    transform: translate(-50%, -50%);
   }
-  .dropdown-menu{
-     height: 240px;
-     width: 210px;
-     background-color: white;
-     border-radius: 40px;
+
+  .mycontentitem {
+    color: black;
+    font-size: 22px;
+    background-color: red;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 20px;
+    margin: 10px;
+    text-decoration: none;
+  }
+
+  .mycontetnt_container {
+    position: absolute;
+    top: 35%;
+    font-style: italic;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* .dropdown-item:hover{
+    background-color: red;
+    color: white;
+  } */
+  .dropdown-menu {
+    height: 200px;
+    width: 200px;
+    border-radius: 10px;
+    border-radius: 10px;
+    background-color: red;
+    color: white;
 
   }
- 
+
   .container {
     /* text-align: center;
     justify-content: center; */
@@ -80,21 +140,28 @@
   .tab {
     text-decoration: none;
     color: red;
+    background-color: white;
+    border: none;
     text-align: center;
-    margin: 30px;
     font-size: 20px;
-    font-style: italic;
-    
-  }
-  .tab_exist{
-    text-decoration: none;
-    color: red;
+    position: absolute;
+    border-radius: 10px;
     padding: 5px;
-    text-align: center;
-    font-size: 20px;
+    width: 85px;
+    top: 20px;
     font-style: italic;
+    left: 44px;
+    transform: translate(-50%, -50%);
+
   }
-  
+
+  .tab_exist {
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+  }
+
 
 
   .tab_header {
@@ -119,9 +186,98 @@
 
   }
 
+  .title {
+    margin: 20px
+  }
+
+  .title_header {
+    text-decoration: none;
+    color: red;
+    font-size: 30px;
+    font-style: italic;
+    position: absolute;
+    top: 4%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+  }
+
   .login {
     text-decoration: none;
     color: red;
+    font-size: 20px;
+    font-style: italic;
+    position: absolute;
+    top: 7%;
+    left: 95%;
+    transform: translate(-50%, -50%);
+  }
+
+  .profile_logout {
+    text-decoration: none;
+    color: red;
+    margin: 10px;
+    font-size: 20px;
+    font-style: italic;
+  }
+
+  .profile_setting {
+    text-decoration: none;
+    color: red;
+    margin: 10px;
+    font-size: 20px;
+    font-style: italic;
+  }
+
+  .profile_profile {
+    text-decoration: none;
+    color: red;
+    margin: 10px;
+    font-size: 20px;
+    font-style: italic;
+  }
+
+  .items {
+    text-decoration: none;
+    color: red;
+    display: none;
+    font-size: 20px;
+    font-style: italic;
+    position: absolute;
+    top: 12%;
+    left: 92%;
+    transform: translate(-50%, -50%);
+  }
+
+
+
+  .username_login {
+    text-decoration: none;
+    color: red;
+    font-size: 20px;
+    font-style: italic;
+    position: absolute;
+    top: 4%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .logout {
+    text-decoration: none;
+    color: red;
+    font-size: 20px;
+    font-style: italic;
+    position: absolute;
+    top: 4%;
+    left: 93%;
+    transform: translate(-50%, -50%);
+    /* text-align: center; */
+  }
+
+  .signup {
+    text-decoration: none;
+    color: red;
+    margin: 10px;
+
     font-size: 20px;
     font-style: italic;
 
@@ -129,7 +285,7 @@
 
 
   .tab-group {
-    margin-top: 5px;
+    margin-top: 80px;
 
   }
 
@@ -152,7 +308,6 @@
 
 
   .img-body {
-    border: 1px solid #ccc;
     background-repeat: no-repeat;
     width: 100%;
     height: 650px;
@@ -172,21 +327,7 @@
     /* text-align: center; */
   }
 
-  .logout {
-    position: absolute;
-    top: 14%;
-    left: 50%;
-    text-decoration: none;
-    transform: translate(-50%, -50%);
-    padding: 10px 10px;
-    font-size: 20px;
-    color: red;
-    text-align: center;
-    width: 250px;
-    font-weight: bold;
-    font-style: italic;
-    /* text-align: center; */
-  }
+
 
   .rating-overlay {
     position: absolute;
@@ -274,21 +415,29 @@
 
   }
 
+  .mylist_title {
+    margin-left: 100px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+
 
 
 
   .recent_btn {
     text-decoration: none;
-    color: #fff;
+    color: red;
     font-weight: bold;
     font-size: 17px;
     margin: 20px;
 
   }
 
+
+
   .purchased_btn {
     text-decoration: none;
-    color: #fff;
+    color: red;
     font-weight: bold;
     font-size: 17px;
     margin: 20px;
@@ -297,7 +446,7 @@
 
   .faverite_btn {
     text-decoration: none;
-    color: #fff;
+    color: red;
     font-weight: bold;
     font-size: 17px;
     margin: 20px;
@@ -306,7 +455,7 @@
 
   .history_btn {
     text-decoration: none;
-    color: #fff;
+    color: red;
     font-weight: bold;
     font-size: 17px;
     margin: 20px;
@@ -323,7 +472,7 @@
     padding: 20px;
     border: 5px solid white;
     border-radius: 40px;
-    width: 340px;
+    width: 360px;
   }
 
   .signup-container {
@@ -341,8 +490,13 @@
 
   }
 
+
   .toRegister {
     font-size: 13px;
+    padding: 0px;
+    margin-left: 35px;
+    justify-content: center;
+    align-items: center;
   }
 
 
@@ -363,16 +517,17 @@
   }
 
   .login_account {
-    margin: 0px;
-    padding: 0px;
     margin-top: 10px;
     margin-left: 20px;
   }
 
   .signup-link {
     text-decoration: none;
-    font-size: 14px;
+    font-size: 20px;
     margin-left: 10px;
+    justify-content: center;
+    align-content: center;
+
   }
 
 
@@ -380,15 +535,17 @@
   .search-icon {
     border-radius: none;
     position: absolute;
-    top: 19%;
+    top: 25%;
     border: none;
     background-color: red;
     font-weight: bold;
-    color: #fff;
+    color: black;
     left: 45%;
     transform: translate(-50%, -50%);
     margin-left: 170px;
 
+    font-weight: bold;
+    font-size: 18px;
   }
 
 
@@ -403,7 +560,7 @@
     font-size: 15;
     font-weight: bold;
     position: absolute;
-    top: 19%;
+    top: 25%;
     font-style: italic;
     left: 45%;
     transform: translate(-50%, -50%);
@@ -411,7 +568,9 @@
   }
 
   input::placeholder {
-    color: #fff
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
   }
 
   .recent_btn:hover {
@@ -470,26 +629,117 @@
 
   }
 
-  .card {
-    margin: 10px;
+  #hoverview_container {
+    display: none;
+    width: 400px;
+    height: 400px;
+  }
 
+  .image-movie {
+    margin: 0px;
+  }
+
+  .movies-container {
+    justify-content: center;
+    margin-top: 10%;
+  }
+
+  .tv-container {
+    justify-content: center;
+    margin-top: 10%;
+  }
+
+  .favorite_container {
+    justify-content: center;
+    margin-top: 10%;
+  }
+
+
+
+  .description {
+    border: none !important;
+    font-size: 30px;
+    font-weight: bolder;
+    color: white;
+    background-color: transparent;
+    text-align: center;
+    margin-left: 27%;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    font-style: italic;
+    left: 27%;
+    transform: translate(-50%, -50%);
+
+  }
+
+  .description:hover {
+    color: red;
+  }
+
+  .list_container {
+    justify-content: center;
+    margin-top: 10%;
+  }
+
+  .card {
+    margin: 15px;
+    width: 20%;
+    padding: 0px;
+    background-color: black;
+    border: none;
+    color: white;
+    border-radius: 25px;
+
+
+  }
+
+  .movie_select {
+    text-decoration: none;
+    color: black;
+  }
+
+  .favorite_movie {
+    background-color: white;
   }
 
   .title-movie {
     text-align: center;
-    font-weight: bold;
     margin-top: 5px;
+    font-weight: lighter;
+    font-size: 20px;
+    color: red;
+
+  }
+
+  .overview {
+    font-size: 22px;
+    width: 50%;
+    color: red;
+    font-weight: lighter;
+    text-align: center;
+    font-style: italic;
+    position: absolute;
+    top: 40%;
+    font-style: italic;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .overview-movie {
     text-align: center;
-    color: black;
+    color: red;
+
+    font-weight: lighter;
+    font-size: 20px;
   }
 
   .movie-card {
     text-decoration: none;
     color: black;
     padding: 5px;
+
   }
 
   .ul-movies {
@@ -565,21 +815,26 @@
     color: red;
     margin-top: 220px;
   }
-  .login-exit{
+
+  .login-exit {
     width: 30px;
     height: 30px;
     margin-bottom: 10px;
     margin-left: 10px;
     padding: 0px;
   }
-  .signup-exit{
+
+
+
+  .signup-exit {
     width: 30px;
     height: 30px;
     margin-bottom: 10px;
     margin-left: 10px;
     padding: 0px;
   }
-  .pupup_login{
+
+  .pupup_login {
     text-decoration: none;
     color: white;
     font-size: 22px;
@@ -587,43 +842,157 @@
     font-family: bolder;
     margin-left: 50px;
 
-}
+  }
+
+  header {
+    display: grid;
+    place-items: center;
+  }
+
+  .user_login {
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  header {
+    width: 100%;
+  }
+
+  /* #favorite_container {
+    display: none;
+  } */
+  .profile {
+    width: 60px;
+    border: none;
+    border-radius: 50%;
+  }
+
+  .profile-log_out {
+    margin-top: 1%;
+  }
+
+  .profile-set-ting {
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+
+  .profile-pro-file {
+    margin-top: 4%;
+  }
+
+  .item_container {
+    background-color: #fff;
+    width: 15%;
+    padding: 10px;
+    margin-right: 20px;
+    position: absolute;
+    top: 50%;
+    margin-top: 20px;
+    font-style: italic;
+    text-align: center;
+    justify-content: center;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+
+  }
 </Style>
 
 
 
 
 <header>
-  <div class="container">
-    <div class="row">
-      <div class=" col-sm-1 title">
-        <h2> Movie & Popcorn</h2>
+  <div class="row">
+
+    <div class="title">
+      <h2 class="title_header"> Movie & Popcorn</h2>
+    </div>
+
+    <div class="tab-group ">
+      <a class="tab_header " href="index">Home</a>
+      <a class="tab_header " href="movies">Movies</a>
+      <a class="tab_header " href="tv">TV Show</a>
+      <a class="tab_header " href="mycontent">My Content</a>
+    </div>
+
+
+    <div id="login" class="user_login">
+      <a class="login" href="login">Log In</a>
+    </div>
+
+
+
+    <div class="items" id="items">
+      <!-- <button class="" type="button" data-bs-toggle="dropdown" aria-expanded="false">Select</button> -->
+
+      <!-- <script>
+        $(document).ready(function() {
+          $('#items').delay(10000).fadeOut('slow');
+        });
+      </script> -->
+
+      <div class="item_container">
+        <ul style="list-style-type: none;">
+          <li class="profile-pro-file">
+            <a class="profile_profile" href="#">Profile</a>
+          </li>
+          <li class="profile-log_out">
+            <a class="profile_logout" href="logout">Log Out</a>
+          </li>
+          <li class="profile-set-ting">
+            <a class="profile_setting" href="#">Setting</a>
+          </li>
+
+        </ul>
       </div>
-      <div class="col-sm-9 tab-group ">
-        <a class="tab_header " href="index">Home</a>
-        <a class="tab_header " href="movies">Movies</a>
-        <a class="tab_header " href="tv">TV Show</a>
-        <a class="tab_header " href="mylist">My List</a>
-
-        <?php if ($user = $this->session->userdata('user')) : ?>
-          <a class="tab_header" href="logout">Log Out</a>
-        <?php endif; ?>
-      </div>
+    </div>
 
 
-      <div class="col-sm-2">
-        <?php if ($user = $this->session->userdata('user')) : ?>
-          <a class="login"><?php echo 'Hello: ' . $user['lastname'] ?></a>
-        <?php else : ?>
-          <a class="login" href="login">Log In</a>
-
-        <?php endif; ?>
 
 
-      </div>
+
+
+    <div id="logout" class="user_logout">
+      <?php if ($user = $this->session->userdata('user')) : ?>
+        <a class="logout" id="logout" onclick="profile()" href="#"><img class="profile" src="https://tse2.mm.bing.net/th?id=OIP.GQ7EXoWnNnFKgaeWvUiorQHaHa&pid=Api&P=0&h=180" alt=""></a>
+        <script>
+          let login = document.getElementById('login');
+          login.style.display = "none";
+
+
+
+          // function profile() {
+          //   let items = document.getElementById('items');
+          //   items.style.display = "block";
+
+
+          // }
+
+          $(document).ready(function() {
+            $("#logout").mousedown(function() {
+              let items = document.getElementById('items');
+              items.style.display = "block";
+            });
+            $("#logout").mouseenter(function() {
+              let items = document.getElementById('items');
+              items.style.display = "none";
+            });
+
+          });
+        </script>
+
+
+
+
+      <?php endif; ?>
 
 
     </div>
+
+
+
+
+
   </div>
 </header>
 

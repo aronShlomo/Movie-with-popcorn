@@ -6,7 +6,19 @@
 <div class="login-container">
 
 
-    <a href="index"><img class="login-exit" src="https://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Actions-edit-delete-icon.png" alt=""></a>
+
+
+    <a id="alert" href="index"><img class="login-exit" src="https://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/128/Actions-edit-delete-icon.png" alt=""></a>
+
+
+
+    <?php if ($error = $this->session->flashdata('most_login')) : ?>
+        <div class="row">
+            <div class="alert alert-dismissible alert-danger error">
+                <?php echo $error; ?>
+            </div>
+        </div>
+    <?php endif; ?>
 
 
     <?php if ($error = $this->session->flashdata('error')) : ?>
@@ -19,7 +31,8 @@
 
 
     <form action="user" method="post">
-        <input type="text" name="lastname" class="form-control" placeholder="Last Name">
+        <!-- <input type="text" name="lastname" class="form-control" placeholder="Last Name"> -->
+        <input type="email" name="email" class="form-control" placeholder="Email">
         <input type="password" name="password" placeholder="Password" class="form-control">
         <!-- <input type="password" name="confirm_password" placeholder="Confirm Password" class="form-control" > -->
         <input type="submit" name="login" placeholder="Submit" class="btn btn-primary submit_login">
@@ -32,16 +45,16 @@
 
 
 
-<section class="body">
+<!-- <section class="body">
 
-    <?php if (
+    </?php if (
         !$this->session->userdata('movieId')
         && !$this->session->userdata('tvId')
     ) : ?>
         <img id="img-home-default" class="img-body" src="https://static0.srcdn.com/wordpress/wp-content/uploads/2023/11/greatest-movies-of-all-time.jpg" alt="">
-    <?php endif; ?>
+    </?php endif; ?>
     </body>
-</section>
+</section> -->
 
 
 

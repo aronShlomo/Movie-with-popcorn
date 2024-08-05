@@ -19,50 +19,69 @@ $image_url = 'https://image.tmdb.org/t/p/original/';
 
 
 
+<div class="row tv-container">
+    <!-- SEARCH   -->
+    <?php if ($this->input->get('search')) : ?>
+        <?php foreach ($results['results'] as $tv) : ?>
+            <div class="card" style="width: 18rem;">
+                <a class="movie-card" href="index?movieId=<?php echo $tv['id']  ?>">
+                    <li>
+                        <img src="<?php echo $image_url . $tv['poster_path']  ?>" class="card-img-top image-movie" name="img">
+                        <p name="title" class="title-movie"><?php echo $tv['name'] ?></p>
+                        <div class="card-body">
+                            <p name="overview" class="overview-movie"><?php echo $tv['overview'] ?></p>
+                        </div>
+                    </li>
+                </a>
+            </div>
+        <?php endforeach; ?>
 
 
 
-<div class="row-container">
-    <ul class="row ul-movies ">
+        <!-- TV -->
+    <?php else : ?>
 
-        <?php if ($this->input->get('search')) : ?>
-            <?php foreach ($results['results'] as $tv) : ?>
-                <div class="card" style="width: 18rem;">
-                    <a class="movie-card" href="index?movieId=<?php echo $tv['id']  ?>">
+        <?php foreach ($result_tv as $tv) : ?>
+            <ul class="card">
+                <a class="movie-card" href="index?tvId=<?php echo $tv['id']  ?>">
+                    <img class="card-img-top image-movie" src="<?php echo $image_url . $tv['poster_path']  ?>">
+                    <!-- <p class="title-movie"></?php echo $tv['name'] ?></p> -->
+                    <div class="card-body">
+                        <!-- <p class="overview-movie"></?php echo $tv['overview'] ?></p> -->
+                        <!-- <a href="mylist?addtvtolist=</?php echo $tv['id'] ?> " class="tab">Add to MyList</a> -->
+                    </div>
+                </a>
+
+
+                <div class="dropdown dropdown-movies">
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Select</button>
+                    <ul class="dropdown-menu">
                         <li>
-                            <img src="<?php echo $image_url . $tv['poster_path']  ?>" class="card-img-top image-movie" name="img">
-                            <p name="title" class="title-movie"><?php echo $tv['name'] ?></p>
-                            <div class="card-body">
-                                <p name="overview" class="overview-movie"><?php echo $tv['overview'] ?></p>
-                            </div>
-                        </li>
-                    </a>
-                </div>
-            <?php endforeach; ?>
+                            <?php if ($this->session->userdata('TVId_exist') == $tv['id']) : ?>
+                                <p class="tab_exist"><a class="tab_exist" href="mylist">TV Already exist in mylist</a></p>
+                            <?php else : ?>
+                                <a href="mylist?addtvtolist=<?php echo $tv['id'] ?> " class="dropdown-item">Add To MyList</a>
+                            <?php endif; ?>
 
-        <?php else : ?>
 
-            <?php foreach ($result_tv as $tv) : ?>
-                <div class="card" style="width: 18rem;">
-                    <a class="movie-card" href="index?tvId=<?php echo $tv['id']  ?>">
-                        <li>
-                            <img class="card-img-top image-movie" src="<?php echo $image_url . $tv['poster_path']  ?>">
-                            <p class="title-movie"><?php echo $tv['name'] ?></p>
-                            <div class="card-body">
-                                <p class="overview-movie"><?php echo $tv['overview'] ?></p>
-                                <a href="mylist?addtvtolist=<?php echo $tv['id'] ?> " class="tab">Add to MyList</a>
-                            </div>
+                            <a href="#" class="dropdown-item">Buy The TV</a>
+
+
+
+                            <?php if ($this->session->userdata('tvFavoriteId_exist') == $tv['id']) : ?>
+                                <p class="tab_exist"><a class="tab_exist" href="myfavorite">TV Already exist in myfavorite</a></p>
+                            <?php else : ?>
+                                <a href="myfavorite?addtvtomyfavorite=<?php echo $tv['id'] ?> " class="dropdown-item">Add To MyFavorite </a>
+                                <!-- <a href="" id="favorite" class="dropdown-item">Favorite</a>  -->
+                            <?php endif; ?>
                         </li>
-                    </a>
+
+                    </ul>
                 </div>
-            <?php endforeach; ?>
-    </ul>
+            </ul>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </div>
-
-
-
-<?php endif; ?>
-
 
 
 
